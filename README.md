@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aperol Scroll
 
-## Getting Started
+A visually immersive, scroll-driven experience that turns data into something fabulous.
 
-First, run the development server:
+# Installation
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Install [pnpm 11](https://pnpm.io/installation) then run
+
+```
+pnpm i
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Env
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create `.env.local` file with these settings
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+ARTSY_ACCESS_TOKEN=
+ARTSY_USER_ID=
+```
 
-## Learn More
+**How to get these credentials:**
 
-To learn more about Next.js, take a look at the following resources:
+1. Go to [staging.artsy.net](https://staging.artsy.net) and sign up.
+2. Open Developer Console (`Cmd+Option+J` on Mac).
+3. Type `sd.CURRENT_USER.accessToken` to get the Token.
+4. Type `sd.CURRENT_USER.id` to get the ID.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# GraphQL
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Introspection Artsy API is **disabled** by default, that's why file `_schemaV2.graphql` is added into the project.
 
-## Deploy on Vercel
+# Run
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To start the app run
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+pnpm dev
+```
+
+# Scripts
+
+`pnpm codegen`: Generates GraphQL types
+
+# Test (unit)
+
+Unit tests can be found in `__tests__`
+
+```
+pnpn test
+```
+
+# Test (end to end)
+
+End to end tests can be found in `__e2e__`
+
+```
+pnpm test:e2e
+```
