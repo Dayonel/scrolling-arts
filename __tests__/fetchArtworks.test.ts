@@ -1,12 +1,12 @@
 import '@testing-library/jest-dom';
 import { fetchArtworks } from '@/lib/actions/fetchArtworks';
-import { query } from '@/lib/graphql/client';
 import { GetRandomArtworkQuery } from '@/types/__generated__/graphql';
 import { ObservableQuery } from '@apollo/client';
 import { GET_RANDOM_ARTWORK } from '@/lib/graphql/queries';
 
+const mockQuery = jest.fn();
 jest.mock('@/lib/graphql/client', () => ({
-  query: jest.fn(),
+  getClient: jest.fn(() => ({ query: mockQuery })),
 }));
 
 describe('fetchArtworks', () => {
@@ -32,7 +32,7 @@ describe('fetchArtworks', () => {
       },
     };
 
-    jest.mocked(query).mockResolvedValueOnce({
+    mockQuery.mockResolvedValueOnce({
       data: mockData,
       loading: false,
       networkStatus: 7,
@@ -43,7 +43,7 @@ describe('fetchArtworks', () => {
 
     const result = await fetchArtworks();
 
-    expect(jest.mocked(query)).toHaveBeenCalledWith({
+    expect(mockQuery).toHaveBeenCalledWith({
       query: GET_RANDOM_ARTWORK,
       errorPolicy: 'all',
     });
