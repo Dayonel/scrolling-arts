@@ -17,5 +17,5 @@ export default function InfiniteScroll({ loadMore }: InfiniteScrollProps) {
     loadMore();
   }, [isInView, loadMore]);
 
-  return <div className="outline" ref={ref}></div>;
+  return <div ref={ref}></div>;
 }

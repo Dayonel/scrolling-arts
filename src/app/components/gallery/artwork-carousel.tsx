@@ -7,6 +7,7 @@ import { fetchArtworks } from '@/lib/actions/fetchArtworks';
 import ArtworkSection from './artwork-section';
 import { AnimatePresence, motion } from 'motion/react';
 import { useScrollTracker } from '@/hooks/use-scroll-tracker';
+import { ARTWORKS_PER_SECTION } from '@/lib/constants';
 
 interface ArtworkProps {
   initialArtworks: Artwork[];
@@ -33,8 +34,8 @@ export default function ArtworkCarousel({ initialArtworks }: ArtworkProps) {
 
   const sections = useMemo(() => {
     const chunks: Artwork[][] = [];
-    for (let i = 0; i < artworks.length; i += 4) {
-      chunks.push(artworks.slice(i, i + 4));
+    for (let i = 0; i < artworks.length; i += ARTWORKS_PER_SECTION) {
+      chunks.push(artworks.slice(i, i + ARTWORKS_PER_SECTION));
     }
 
     return chunks;
@@ -46,7 +47,7 @@ export default function ArtworkCarousel({ initialArtworks }: ArtworkProps) {
     <div
       ref={ref}
       style={{ '--sections': sections.length } as React.CSSProperties}
-      className="relative w-full h-[calc(100svh*var(--sections))]"
+      className="relative w-full h-[calc(200svh*var(--sections))]"
     >
       <div className="fixed top-0 left-0 w-full h-screen overflow-hidden flex items-start md:items-center justify-center md:pt-32">
         <motion.div

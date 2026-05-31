@@ -11,6 +11,7 @@
   --color-foreground: var(--foreground);
   --color-brand: var(--brand);
   --font-sans: var(--font-geist-sans);
+  --font-jager: var(--font-jager);
   --font-mono: var(--font-geist-mono);
 }
 
