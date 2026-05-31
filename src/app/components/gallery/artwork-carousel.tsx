@@ -13,7 +13,7 @@ interface ArtworkProps {
 }
 
 export default function ArtworkCarousel({ initialArtworks }: ArtworkProps) {
-  const { initialize, sections, currIndex, sectionProgress, loadMore } =
+  const { initialize, sections, currIndex, sectionProgress } =
     useArtworkStore();
 
   useEffect(() => {
@@ -60,7 +60,7 @@ export default function ArtworkCarousel({ initialArtworks }: ArtworkProps) {
       </div>
 
       <div className="absolute bottom-0 left-0 w-full h-[200dvh] md:h-[50vh] pointer-events-none">
-        <InfiniteScroll loadMore={loadMore} />
+        <InfiniteScroll />
       </div>
     </div>
   );

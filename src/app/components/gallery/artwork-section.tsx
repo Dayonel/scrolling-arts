@@ -29,7 +29,7 @@ export default function ArtworkSection({ artworks }: ArtworkSectionProps) {
       >
         {artworks.map((art, index) => (
           <ArtworkPanel
-            key={index}
+            key={art.id}
             artwork={art}
             index={index}
             isActive={index === activeIndex}

@@ -1,13 +1,13 @@
 'use client';
 
-import { createContext, useContext, useRef } from 'react';
+import { createContext, use, useRef } from 'react';
 
 const ScrollContext = createContext<React.RefObject<HTMLElement | null>>({
   current: null,
 });
 
 export function useScrollContainer() {
-  return useContext(ScrollContext);
+  return use(ScrollContext);
 }
 
 export function ScrollProvider({ children }: { children: React.ReactNode }) {

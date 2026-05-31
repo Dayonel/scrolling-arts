@@ -1,6 +1,6 @@
-# Aperol Scroll
+# Scrolling Arts
 
-A visually immersive, scroll-driven experience that turns data into something fabulous.
+Infinite scroll artwork gallery with curated pieces
 
 # Installation
 

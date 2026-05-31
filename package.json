@@ -1,8 +1,8 @@
 {
-  "name": "aperol-scroll",
+  "name": "scrolling-arts",
   "version": "0.1.0",
   "private": true,
-  "description": "A visually immersive, scroll-driven experience that turns data into something fabulous. ",
+  "description": "Infinite scroll artwork gallery with curated pieces",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -16,7 +16,6 @@
   "dependencies": {
     "@apollo/client": "^4.2.0",
     "@apollo/client-integration-nextjs": "^0.14.5",
-    "@tanstack/react-query": "^5.100.14",
     "graphql": "^16.14.0",
     "motion": "^12.40.0",
     "next": "16.2.6",
