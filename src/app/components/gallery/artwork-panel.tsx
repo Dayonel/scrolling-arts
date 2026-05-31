@@ -22,23 +22,23 @@ const ArtworkPanel = ({ artwork, index, isActive }: ArtworkPanelProps) => {
   return (
     <div
       className={`
-        relative p-6 flex flex-col justify-between col-start-1 row-start-1 md:col-auto md:row-auto transition-all duration-300 ${jagerFont.className} font-features-['salt'_1]
+        relative p-6 bg-[#f9f4f0] flex flex-col justify-between col-start-1 row-start-1 md:col-auto md:row-auto transition-all duration-300 ${jagerFont.className} font-features-['salt'_1]
   
         after:absolute after:bg-gray-200 after:left-0 after:right-0 after:bottom-0 after:h-px 
         md:after:left-0 md:after:bottom-8 md:after:w-px md:after:h-3/4 md:first:after:hidden
         
-        ${isActive ? 'opacity-100 pointer-events-auto after:-z-30' : 'opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto bg-[#f9f4f0]'}
+        ${isActive ? 'z-20 opacity-100 pointer-events-auto after:-z-30' : 'z-0 opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto'}
       `}
     >
       <div
-        className={`absolute inset-0 bg-[#f9f4f0] transition-opacity duration-1000 ease-in-out -z-20 pointer-events-none ${isActive ? 'opacity-100' : 'opacity-0'}`}
+        className={`absolute inset-0 bg-[#f9f4f0] transition-opacity duration-300 md:duration-1000 ease-in-out -z-20 pointer-events-none ${isActive ? 'opacity-100' : 'opacity-0'}`}
       />
 
       <Image
         src={artwork.image?.url || '/placeholder-image.png'}
         fill
         alt={artwork.title || 'placeholder'}
-        className={`object-cover transition-opacity duration-1000 ease-out pointer-events-none -z-10 ${imageLoaded && isActive ? 'opacity-100' : 'opacity-0'}`}
+        className={`object-cover transition-opacity duration-300 md:duration-1000 ease-out pointer-events-none -z-10 ${imageLoaded && isActive ? 'opacity-100' : 'opacity-0'}`}
         onLoad={() => setImageLoaded(true)}
         sizes="(max-width: 768px) 100vw, 300px"
         priority={isPriority}
@@ -46,7 +46,7 @@ const ArtworkPanel = ({ artwork, index, isActive }: ArtworkPanelProps) => {
       />
 
       <div
-        className={`absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-black/60 pointer-events-none transition-opacity duration-1000 -z-10 ${
+        className={`absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-black/60 pointer-events-none transition-opacity duration-300 md:duration-1000 -z-10 ${
           isActive ? 'opacity-100' : 'opacity-0'
         }`}
       />
@@ -58,7 +58,7 @@ const ArtworkPanel = ({ artwork, index, isActive }: ArtworkPanelProps) => {
           {artwork.title}
         </h2>
         <p
-          className={`font-sans text-3xl md:text-base line-clamp-2 break-all ${isActive ? 'text-white' : 'text-[#171717]'}`}
+          className={`font-sans text-3xl md:text-base line-clamp-2 break-all transition-colors duration-300 ${isActive ? 'text-white' : 'text-[#171717]'}`}
         >
           {toRomanNumeral(artwork.date)}
         </p>

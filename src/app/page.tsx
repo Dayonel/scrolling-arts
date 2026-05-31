@@ -4,10 +4,10 @@ import ArtworkGallery from './components/gallery/artwork-gallery';
 
 export default async function Home() {
   return (
-    <main>
+    <>
       <Suspense fallback={<ArtworkLoader />}>
         <ArtworkGallery></ArtworkGallery>
       </Suspense>
-    </main>
+    </>
   );
 }

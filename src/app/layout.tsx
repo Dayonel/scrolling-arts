@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { DisableScrollRestoration } from './components/disable-scroll-restoration';
+import { ScrollProvider } from './components/scroll-provider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -30,7 +31,7 @@ export default function RootLayout({
     >
       <body className="md:pb-32">
         <DisableScrollRestoration />
-        {children}
+        <ScrollProvider>{children}</ScrollProvider>
       </body>
     </html>
   );

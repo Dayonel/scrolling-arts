@@ -47,9 +47,9 @@ export default function ArtworkCarousel({ initialArtworks }: ArtworkProps) {
     <div
       ref={ref}
       style={{ '--sections': sections.length } as React.CSSProperties}
-      className="relative w-full h-[calc(200svh*var(--sections))]"
+      className="relative w-full h-[calc(300svh*var(--sections))] md:h-[calc(200svh*var(--sections))]"
     >
-      <div className="fixed top-0 left-0 w-full h-screen overflow-hidden flex items-start md:items-center justify-center md:pt-32">
+      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-start md:items-center justify-center md:pt-32">
         <motion.div
           style={{
             scaleX: sectionProgress,
@@ -83,7 +83,7 @@ export default function ArtworkCarousel({ initialArtworks }: ArtworkProps) {
         </AnimatePresence>
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full h-[50vh] pointer-events-none">
+      <div className="absolute bottom-0 left-0 w-full h-[200dvh] md:h-[50vh] pointer-events-none">
         <InfiniteScroll loadMore={loadMore} />
       </div>
     </div>

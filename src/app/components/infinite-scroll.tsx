@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { useInView } from 'motion/react';
+import { useScrollContainer } from './scroll-provider';
 
 interface InfiniteScrollProps {
   loadMore: () => void;
@@ -9,7 +10,8 @@ interface InfiniteScrollProps {
 
 export default function InfiniteScroll({ loadMore }: InfiniteScrollProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref);
+  const scrollRef = useScrollContainer();
+  const isInView = useInView(ref, { root: scrollRef });
 
   useEffect(() => {
     if (!isInView) return;
