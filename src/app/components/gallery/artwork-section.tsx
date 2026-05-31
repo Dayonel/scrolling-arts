@@ -3,20 +3,14 @@ import ArtworkPanel from './artwork-panel';
 import { ARTWORKS_PER_SECTION } from '@/lib/constants';
 import ArtworkBackground from './artwork-background';
 import { AnimatePresence } from 'motion/react';
+import { useArtworkStore } from '@/lib/stores/artwork-store';
 
 interface ArtworkSectionProps {
   artworks: Artwork[];
-  sectionProgress: number;
 }
 
-export default function ArtworkSection({
-  artworks,
-  sectionProgress,
-}: ArtworkSectionProps) {
-  const activeIndex = Math.min(
-    artworks.length - 1,
-    Math.floor(sectionProgress * artworks.length),
-  );
+export default function ArtworkSection({ artworks }: ArtworkSectionProps) {
+  const activeIndex = useArtworkStore((s) => s.activeIndex);
 
   return (
     <section>

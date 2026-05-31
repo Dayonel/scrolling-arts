@@ -2,46 +2,25 @@
 
 import { Artwork } from '@/app/types/artwork';
 import InfiniteScroll from '../infinite-scroll';
-import { useCallback, useMemo, useRef, useState } from 'react';
-import { fetchArtworks } from '@/lib/actions/fetchArtworks';
 import ArtworkSection from './artwork-section';
 import { AnimatePresence, motion } from 'motion/react';
 import { useScrollTracker } from '@/hooks/use-scroll-tracker';
-import { ARTWORKS_PER_SECTION } from '@/lib/constants';
+import { useArtworkStore } from '@/lib/stores/artwork-store';
+import { useEffect } from 'react';
 
 interface ArtworkProps {
   initialArtworks: Artwork[];
 }
 
 export default function ArtworkCarousel({ initialArtworks }: ArtworkProps) {
-  const [artworks, setArtworks] = useState(initialArtworks);
-  const isLoading = useRef(false);
+  const { initialize, sections, currIndex, sectionProgress, loadMore } =
+    useArtworkStore();
 
-  const loadMore = useCallback(async () => {
-    if (isLoading.current) return;
-    isLoading.current = true;
+  useEffect(() => {
+    initialize(initialArtworks);
+  }, [initialArtworks, initialize]);
 
-    try {
-      const { artworks: newArtworks } = await fetchArtworks();
-
-      setArtworks((prev) => {
-        return [...prev, ...newArtworks];
-      });
-    } finally {
-      isLoading.current = false;
-    }
-  }, []);
-
-  const sections = useMemo(() => {
-    const chunks: Artwork[][] = [];
-    for (let i = 0; i < artworks.length; i += ARTWORKS_PER_SECTION) {
-      chunks.push(artworks.slice(i, i + ARTWORKS_PER_SECTION));
-    }
-
-    return chunks;
-  }, [artworks]);
-
-  const { sectionProgress, ref, currIndex } = useScrollTracker(sections.length);
+  const ref = useScrollTracker();
 
   return (
     <div
@@ -74,10 +53,7 @@ export default function ArtworkCarousel({ initialArtworks }: ArtworkProps) {
               transition={{ duration: 0.5 }}
               className="absolute inset-0 flex items-start md:items-center justify-center w-full h-full overflow-y-auto"
             >
-              <ArtworkSection
-                artworks={sections[currIndex]}
-                sectionProgress={sectionProgress}
-              />
+              <ArtworkSection artworks={sections[currIndex]} />
             </motion.div>
           )}
         </AnimatePresence>

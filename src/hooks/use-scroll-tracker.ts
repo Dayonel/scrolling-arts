@@ -1,12 +1,12 @@
 import { useScrollContainer } from '@/app/components/scroll-provider';
+import { useArtworkStore } from '@/lib/stores/artwork-store';
 import { useMotionValueEvent, useScroll } from 'motion/react';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
-export const useScrollTracker = (sections: number) => {
+export const useScrollTracker = () => {
   const ref = useRef(null);
-  const [sectionProgress, setSectionProgress] = useState(0);
-  const [currIndex, setCurrIndex] = useState(0);
   const scrollRef = useScrollContainer();
+  const setScrollProgress = useArtworkStore((s) => s.setScrollProgress);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -14,18 +14,7 @@ export const useScrollTracker = (sections: number) => {
     offset: ['start start', 'end start'],
   });
 
-  useMotionValueEvent(scrollYProgress, 'change', (v) => {
-    const global = v * sections;
-    const index = Math.floor(global);
-    const progress = global - index;
+  useMotionValueEvent(scrollYProgress, 'change', setScrollProgress);
 
-    setSectionProgress(progress);
-    setCurrIndex(index);
-  });
-
-  return {
-    ref,
-    sectionProgress,
-    currIndex,
-  };
+  return ref;
 };
