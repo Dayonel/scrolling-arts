@@ -40,6 +40,7 @@ export default function ArtworkCarousel({ initialArtworks }: ArtworkProps) {
             originX: 0,
             backgroundColor: 'var(--brand)',
             zIndex: 50,
+            pointerEvents: 'none',
           }}
         />
 
