@@ -44,12 +44,12 @@ pnpm dev
 
 `pnpm codegen`: Generates GraphQL types
 
-# Test (unit)
+# Test (unit & integration)
 
-Unit tests can be found in `__tests__`
+Unit and integration tests (using Jest and React Testing Library) can be found in **tests**.
 
 ```
-pnpn test
+pnpm test
 ```
 
 # Test (end to end)
