@@ -8,7 +8,7 @@ export const ARTWORK_FIELDS_FRAGMENT = gql`
     title
     date
     image {
-      url(version: "larger")
+      url(version: "normalized")
     }
   }
 `;
