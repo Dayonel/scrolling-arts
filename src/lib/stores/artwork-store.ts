@@ -67,11 +67,7 @@ export const useArtworkStore = create<ArtworkState>((set, get) => ({
     const index = Math.min(Math.floor(global), sections.length - 1);
     const progress = global - index;
 
-    const section = sections[index] || [];
-    const activeIndex = Math.min(
-      section.length - 1,
-      Math.floor(progress * section.length),
-    );
+    const activeIndex = Math.floor(progress * ARTWORKS_PER_SECTION);
 
     set({ currIndex: index, sectionProgress: progress, activeIndex });
   },
