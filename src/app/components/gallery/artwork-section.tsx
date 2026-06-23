@@ -13,7 +13,7 @@ export default function ArtworkSection({ artworks }: ArtworkSectionProps) {
   const activeIndex = useArtworkStore((s) => s.activeIndex);
 
   return (
-    <section>
+    <section className="w-full">
       <AnimatePresence>
         {artworks[activeIndex] && (
           <ArtworkBackground
