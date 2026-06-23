@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { DisableScrollRestoration } from './components/disable-scroll-restoration';
-import { ScrollProvider } from './components/scroll-provider';
 import { MotionConfig } from 'motion/react';
+import { ScrollContainer } from './components/scroll-container';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -32,9 +32,9 @@ export default function RootLayout({
     >
       <body className="md:pb-32">
         <DisableScrollRestoration />
-        <ScrollProvider>
+        <ScrollContainer>
           <MotionConfig reducedMotion="user">{children}</MotionConfig>
-        </ScrollProvider>
+        </ScrollContainer>
       </body>
     </html>
   );

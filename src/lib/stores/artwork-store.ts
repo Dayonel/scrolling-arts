@@ -2,6 +2,7 @@ import { Artwork } from '@/app/types/artwork';
 import { ARTWORKS_PER_SECTION } from '../constants';
 import { create } from 'zustand';
 import { fetchArtworks } from '../actions/fetchArtworks';
+import { createRef, RefObject } from 'react';
 
 interface ArtworkState {
   artworks: Artwork[];
@@ -13,6 +14,7 @@ interface ArtworkState {
   setScrollProgress: (scrollProgress: number) => void;
   loadMore: () => Promise<void>;
   initialize: (initial: Artwork[]) => void;
+  scrollRef: RefObject<HTMLDivElement | null>;
 }
 
 function buildSections(artworks: Artwork[]): Artwork[][] {
@@ -30,6 +32,7 @@ export const useArtworkStore = create<ArtworkState>((set, get) => ({
   activeIndex: 0,
   sectionProgress: 0,
   isLoading: false,
+  scrollRef: createRef<HTMLDivElement>(),
 
   initialize: (initial: Artwork[]) => {
     if (get().artworks.length > 0) return;
