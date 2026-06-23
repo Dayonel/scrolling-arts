@@ -24,8 +24,7 @@ const ArtworkBackground = memo(({ artwork }: ArtworkBackgroundProps) => {
         alt={artwork.title || 'placeholder'}
         role="presentation"
         className="object-cover"
-        sizes="100vw"
-        quality={75}
+        unoptimized
         priority
         draggable={false}
         onLoad={() => setImageLoaded(true)}

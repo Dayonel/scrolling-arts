@@ -40,7 +40,7 @@ const ArtworkPanel = ({ artwork, index, isActive }: ArtworkPanelProps) => {
         alt={artwork.title || 'placeholder'}
         className={`object-cover transition-opacity duration-300 md:duration-1000 ease-out pointer-events-none -z-10 ${imageLoaded && isActive ? 'opacity-100' : 'opacity-0'}`}
         onLoad={() => setImageLoaded(true)}
-        sizes="(max-width: 768px) 100vw, 300px"
+        unoptimized
         priority={isPriority}
         draggable={false}
       />
