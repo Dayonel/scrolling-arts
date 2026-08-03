@@ -57,7 +57,19 @@ pnpm test
 End to end tests can be found in `__e2e__`
 
 ```
+pnpm dev
+```
+
+In a second terminal
+
+```
 pnpm test:e2e
+```
+
+UI version (optional)
+
+```
+pnpm test:e2e --ui
 ```
 
 # Decisions
