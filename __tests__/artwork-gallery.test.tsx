@@ -43,9 +43,10 @@ jest.mock('motion/react', () => ({
 
 jest.mock('next/image', () => {
   const MockImage = (props: Record<string, unknown>) => {
-    const { src, alt, fill, priority, ...rest } = props;
+    const { src, alt, fill, priority, unoptimized, ...rest } = props;
     void fill;
     void priority;
+    void unoptimized;
     // eslint-disable-next-line @next/next/no-img-element
     return <img src={src as string} alt={alt as string} {...rest} />;
   };

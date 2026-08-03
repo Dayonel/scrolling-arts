@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import { useArtworkStore } from '@/lib/stores/artwork-store';
 import { Artwork } from '@/app/types/artwork';
 import { fetchArtworks } from '@/lib/actions/fetchArtworks';
+import { ARTWORKS_PER_SECTION } from '@/lib/constants';
 
 jest.mock('@/lib/actions/fetchArtworks', () => ({
   fetchArtworks: jest.fn(),
@@ -71,6 +72,6 @@ describe('useArtworkStore', () => {
 
     expect(state.currIndex).toBe(0);
     expect(state.sectionProgress).toBeCloseTo(0.99);
-    expect(state.activeIndex).toBe(2);
+    expect(state.activeIndex).toBe(Math.floor(0.99 * ARTWORKS_PER_SECTION)); 
   });
 });
