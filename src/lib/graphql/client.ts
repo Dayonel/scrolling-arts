@@ -9,20 +9,31 @@ import {
   CombinedGraphQLErrors,
   CombinedProtocolErrors,
 } from '@apollo/client/errors';
+import { get } from '@vercel/global-config';
+import { SetContextLink } from '@apollo/client/link/context';
+
+const read = async (key: string) =>
+  (process.env.GLOBAL_CONFIG && (await get<string>(key))) ||
+  process.env[key] ||
+  '';
+
+const authLink = new SetContextLink(async ({ headers }) => ({
+  headers: {
+    ...headers,
+    'x-access-token': await read('ARTSY_ACCESS_TOKEN'),
+    'x-user-id': await read('ARTSY_USER_ID'),
+  },
+}));
 
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
   return new ApolloClient({
     cache: new InMemoryCache(),
-    link: ApolloLink.from([errorLink, httpLink]),
+    link: ApolloLink.from([errorLink, authLink, httpLink]),
   });
 });
 
 const httpLink = new HttpLink({
   uri: 'https://metaphysics-production.artsy.net/v2',
-  headers: {
-    'x-access-token': process.env.ARTSY_ACCESS_TOKEN || '',
-    'x-user-id': process.env.ARTSY_USER_ID || '',
-  },
 });
 
 const errorLink = new ErrorLink(({ error }) => {

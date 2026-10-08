@@ -16,6 +16,7 @@
   "dependencies": {
     "@apollo/client": "^4.2.0",
     "@apollo/client-integration-nextjs": "^0.14.5",
+    "@vercel/global-config": "^1.5.1",
     "graphql": "^16.14.0",
     "motion": "^12.40.0",
     "next": "16.2.6",
